@@ -106,7 +106,7 @@ def comparison(word, letter):
                 raise NameError("Por favor no ingrese numeros")
             elif (not(user.isalpha())):
                 raise NameError("Por favor solo ingrese letras ")
-            os.system('clear')
+            os.system("clear")
             for i in range(0, len(w)):
                 if w[i] == user:
                     l[i] = w[i]
@@ -138,6 +138,7 @@ def run():
         os.system("clear")
 
         if validate_word(word_draw):
+            print("!ADIVINA LA PALABRA !")
             letra = comparison(word, word_draw)
             posicions = find_letter(letra, word)
             word_draw = validate_letter(letra, word_draw, posicions)
