@@ -78,6 +78,7 @@ def validate_letter(letter, word_blank, posicions):
     """
     for i in posicions:
         word_blank[i] = letter
+        
     return word_blank
 
 
@@ -95,21 +96,25 @@ def comparison(word, letter):
     """
     w = list(word)
     l = list(letter)
+    
     user = ''
     while w != l:
         try:
+            founded= False
             user = input("ingrese una letra: ")
 
             if len(user) > 1:
                 raise NameError("Por favor ingrese un solo caracter")
-            elif user.isnumeric():
-                raise NameError("Por favor no ingrese numeros")
-            elif (not(user.isalpha())):
-                raise NameError("Por favor solo ingrese letras ")
+            elif user.isnumeric() or not(user.isalpha()):
+                raise NameError("Por favor solo agregue letras")
             os.system("clear")
             for i in range(0, len(w)):
                 if w[i] == user:
                     l[i] = w[i]
+                    founded = True
+            
+            if(not(founded)):
+                print("la letra no coincide")
             print(" ".join(l).upper())
             print("\n")
 
@@ -132,16 +137,16 @@ def validate_word(word):
 
 def run():
     try:
-        intentos = 0
+        attemps = 0
         word = choose()
         word_draw = size_word_blank(word)
         os.system("clear")
 
         if validate_word(word_draw):
             print("!ADIVINA LA PALABRA !")
-            letra = comparison(word, word_draw)
-            posicions = find_letter(letra, word)
-            word_draw = validate_letter(letra, word_draw, posicions)
+            letter = comparison(word, word_draw)
+            posicions = find_letter(letter, word)
+            word_draw = validate_letter(letter, word_draw, posicions)
 
         print("la palabra es: "+ word+ "\n ¡Ganaste!")
 
